@@ -2,6 +2,7 @@ const Product = require('../models/product');
 
 // Save a new product
 exports.createProduct = async (req, res) => {
+    console.log(req.body)
     try {
         const product = new Product({
             name: req.body.name,
@@ -9,7 +10,7 @@ exports.createProduct = async (req, res) => {
             description: req.body.description
         });
         const savedProduct = await product.save();
-        res.status(201).json(savedProduct);
+        res.status(201).json({message: 'product created successfully' ,savedProduct});
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
